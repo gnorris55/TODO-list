@@ -1,2 +1,4 @@
-body {
-  background-color: red; }
+#list-container {
+  margin-left: 20px; }
+  #list-container .item {
+    margin-left: 10px; }
