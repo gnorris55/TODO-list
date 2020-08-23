@@ -1,9 +1,23 @@
 #list-container {
-  margin-left: 20px; }
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr); }
+  #list-container .project-item {
+    border: grey solid 1px;
+    padding-left: 10px;
+    padding-bottom: 10px; }
   #list-container .project {
-    color: salmon;
-    font-size: 25px;
+    color: lightblue;
+    font-size: 20px;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black; }
-  #list-container .item {
-    margin-left: 10px; }
+  #list-container #general {
+    grid-row: 1 / 2; }
+  #list-container #urgent {
+    grid-row: 2 / 3; }
+  #list-container #done {
+    grid-row: 3 / 4; }
+  #list-container .main-projects, #list-container #general, #list-container #urgent, #list-container #done {
+    grid-column: 1 / 2;
+    background-color: salmon; }

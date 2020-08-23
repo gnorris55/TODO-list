@@ -22,18 +22,29 @@ function listItem(topic, body, finished = false, type = "general") {
         return type;
     }
 
+    const changeStatus = () => {
+        finished = !finished;
+        changeProject("done");
+    }
+    const changeProject = (value) => {
+       type = value;
+    }
+
     return {
         getTopic: getTopic,
         getBody: getBody,
         getStatus: getStatus,
-        getType: getType
-    }
+        getType: getType,
+        changeStatus: changeStatus,
+        changeProject: changeProject
+    };
 
 }
 
 function projectForm(value) {
     projects.addProject(value);
 }
+
 function itemForm(topic, body) {
     let type;
 
@@ -50,17 +61,14 @@ function itemForm(topic, body) {
     listController.createItem(topic, body, false, type);
 }
 // test -----------------------------
-listController.createItem("get haircut", "this needs to be done soon", true, "urgent");
-listController.createItem("do homework", "i need to do math and science homework", false);
-listController.createItem("wack Tom", "high Tom... bye Tom", true, "urgent");
-listController.createItem("protest", "I dont know what i'm mad at but I AM MAD", false);
+listController.createItem("get haircut", "this needs to be done soon", false, "urgent");
+listController.createItem("do homework", "i need to do math and science homework");
+listController.createItem("wack Tom", "high Tom... bye Tom", false, "urgent");
+listController.createItem("protest", "I dont know what i'm mad at but I AM MAD");
 //-----------------------------------
 
 // exports---------
-export { listItem }
+export { listItem };
 window.projectForm = projectForm;
 window.itemForm = itemForm;
 //-----------------
-
-
-

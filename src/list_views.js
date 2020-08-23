@@ -1,4 +1,4 @@
-import {listModule} from './list.js'
+import {listController} from './list.js'
 
 const listViews = (function() {
 
@@ -25,6 +25,7 @@ const listViews = (function() {
             // creats a div for each project
             let project = document.createElement("div")
             project.id = projects[i];
+            project.className = "project-item";
             // creates a title for each project
             let title = document.createElement("h3");
             title.innerHTML = projects[i];
@@ -86,15 +87,24 @@ const listViews = (function() {
 
             let deleteButton = document.createElement("button");
             deleteButton.onclick = function() {
-                listModule.deleteItem(topic.textContent);
+                listController.deleteItem(topic.textContent);
             }
             deleteButton.innerHTML = "delete";
-        
+
             // adds all item properties to the template
             project.appendChild(status);
             project.appendChild(topic);
             project.appendChild(body);
             project.appendChild(status);
+            if (!list[i].getStatus()) {
+
+                let changeButton = document.createElement("button");
+                changeButton.onclick = function() {
+                    listController.changeStatus(topic.textContent);
+                }
+                changeButton.innerHTML = "change status";
+                project.appendChild(changeButton);
+            }
             project.appendChild(deleteButton);
         }
     }

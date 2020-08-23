@@ -1,15 +1,40 @@
 #list-container
 {
     margin-left: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    .project-item
+    {
+        border: grey solid 1px;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
     .project
     {
-        color: salmon;
-        font-size: 25px;
+        color: lightblue;
+        font-size: 20px;
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: black;
     }
-    .item
+    #general
     {
-        margin-left: 10px;
+        @extend .main-projects;
+        grid-row: 1 / 2;
+    }
+    #urgent
+    {
+        @extend .main-projects;
+        grid-row: 2 / 3;
+    }
+    #done
+    {
+        @extend .main-projects;
+        grid-row: 3 / 4;
+    }
+    .main-projects
+    {
+        grid-column: 1 / 2;
+        background-color: salmon;
     }
 }
