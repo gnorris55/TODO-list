@@ -8,11 +8,29 @@
 </head>
 <body>
     <h1>MY TODO LIST</h1 >
+    <form >
+        <h2>create a project</h2>
+        <label for="project-name">Project Name: </label>
+        <input type="text" name="project-name" id="project-name">
+        <button type="button" onclick="window.projectForm(document.getElementById('project-name').value)">create</button>
+    </form>
+    <form >
+            <h2>create a TODO</h2>
+            <label for="topic">title: </label>
+            <input type="text" name="topic" id="topic">
+            <label for="body">body: </label>
+            <textarea type="text" name="body" id="body"></textarea>
+            <div id="item-form">
+
+            </div>
+            <button type="button" onclick="window.itemForm(document.getElementById('topic').value, document.getElementById('body').value)">
+                create
+            </button>
+    </form>
     <h3>all TODOs</h3>
     <div id="list-container">
 
     </div>
-    <script src="https://unpkg.com/mustache@latest"></script>
     <script src="main.js"></script>
 </body>
 </html>

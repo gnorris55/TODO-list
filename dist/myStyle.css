@@ -1,4 +1,9 @@
 #list-container {
   margin-left: 20px; }
+  #list-container .project {
+    color: salmon;
+    font-size: 25px;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black; }
   #list-container .item {
     margin-left: 10px; }

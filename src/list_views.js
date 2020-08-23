@@ -1,3 +1,5 @@
+import {listModule} from './list.js'
+
 const listViews = (function() {
 
     const template = document.getElementById("list-container");
@@ -10,16 +12,50 @@ const listViews = (function() {
 
     //resets template so items dont stack
     function reload() {
+        let form = document.getElementById("item-form");
+        form.innerHTML = "";
         template.innerHTML = "";
     }
     
+    // this is where the list items will be stored
     function loadProjects(projects) {
+
+        // getting the div where the radio buttons will be stored
         for (let i = 0; i < projects.length; i++) {
+            // creats a div for each project
             let project = document.createElement("div")
             project.id = projects[i];
-            project.innerHTML = projects[i];
+            // creates a title for each project
+            let title = document.createElement("h3");
+            title.innerHTML = projects[i];
+            title.className = "project";
+
+            loadRadioForm(projects[i]);
+            
+            //joins the project with HTML
+            project.appendChild(title);
             template.appendChild(project);
         }
+    }
+    
+    // loads buttons that will be used to assign items to projects
+    function loadRadioForm(project) {
+
+        // get div where the rado buttons will be placed
+        let projectOptions = document.getElementById("item-form");
+
+        // creating the radio button
+        let projectRadio = document.createElement("input");
+        let projectRadioLable = document.createElement("label");
+        projectRadioLable.for = project;
+        projectRadioLable.innerHTML = project;
+        projectRadio.name = "project-type";
+        projectRadio.type = "radio";
+        projectRadio.value = project;
+
+        //joining the radio buttons to the rest of the project
+        projectOptions.appendChild(projectRadioLable);
+        projectOptions.appendChild(projectRadio);
     }
 
 
@@ -48,11 +84,18 @@ const listViews = (function() {
             }
             status.className = "item";
 
+            let deleteButton = document.createElement("button");
+            deleteButton.onclick = function() {
+                listModule.deleteItem(topic.textContent);
+            }
+            deleteButton.innerHTML = "delete";
+        
             // adds all item properties to the template
             project.appendChild(status);
             project.appendChild(topic);
             project.appendChild(body);
             project.appendChild(status);
+            project.appendChild(deleteButton);
         }
     }
 

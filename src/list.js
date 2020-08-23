@@ -38,8 +38,24 @@ const listModule = (function () {
         listController.sendList(list);
     }
 
+    function getList() {
+        return list;
+    }
+
+    function deleteItem(value){
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].getTopic() == value) {
+                list.splice(i, 1);
+                alert("found");
+                listController.sendList(list);
+            }
+        }
+    }
+
     return {
-        addToList: addToList
+        addToList: addToList,
+        getList: getList,
+        deleteItem: deleteItem
     };
 
 }) ();
@@ -49,6 +65,7 @@ const projects = (function() {
     let projectList = ["general", "urgent"];
     function addProject(project) {
         projectList.push(project);
+        listController.sendList(listModule.getList());
     }
      function getProjects(){
         return projectList;
@@ -65,4 +82,6 @@ const projects = (function() {
 
 // exports---------------
 export { listController }
+export {listModule}
+export { projects }
 //-----------------------
